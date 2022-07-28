@@ -3,7 +3,8 @@
 I decided to make this test application to showcase my work-flow and -style. I had admittedly had difficulties with the technical exercise under the 1hr constraint. However, I wanted to show what I'm normally like under most circumstances, and my thought process throughout a project.
 * How I made this
 First, I'll start initialize the project with my Reasonable Defaults template, which will install of all my normal tools.
-- =rails new poll-anywhere-redux -m "https://railsbytes.com/script/zOvs6r"=
+
+ =rails new poll-anywhere-redux -m "https://railsbytes.com/script/zOvs6r"=
 ** Explanation for Reasonable Defaults
 The *Reasonable Defaults* template setups up the following:
 - RSpec Workflow
