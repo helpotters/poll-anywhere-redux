@@ -1,0 +1,69 @@
+#+title: Readme
+* Why?
+I decided to make this test application to showcase my work-flow and -style. I had admittedly had difficulties with the technical exercise under the 1hr constraint. However, I wanted to show what I'm normally like under most circumstances, and my thought process throughout a project.
+* How I made this
+First, I'll start initialize the project with my Reasonable Defaults template, which will install of all my normal tools.
+- =rails new poll-anywhere-redux -m "https://railsbytes.com/script/zOvs6r"=
+** Explanation for Reasonable Defaults
+The *Reasonable Defaults* template setups up the following:
+- RSpec Workflow
+  - Thoughtbot gems :: A company that makes excellent resources for Rails development
+    - Factory Bot
+    - Formulaic
+    - Shoulda-matchers
+  - Basic Gems ::
+    - Capybara
+    - RSpec + Rspec-rails
+    - Faker :: For quick data testing. useful for factory bot
+- HTML-related
+  - HAML or ERB Templating :: Dev decides which one they want
+    - Converts all templates to HAML if chosen
+  - CSS Bundling :: Quickly install a common framework without hassle
+- Immediately get started with development
+** Top-down Feature Testing
+We're going to code this from the feature down to the unit.
+
+First I'm actually going to open the yard docs server so I can browse the documentation of the gems without having to google it. =yard server -g=. I realized I forgot generators rspec-rails had available because I normally avoid scaffolding and the such.
+
+*** First Feature :: Polls
+Let's define the requirements of the feature to know when we have our MVP.
+**** polls with crud :initiative:
+- MVP :: users can create polls with a clean ui
+Let's think a bit about our feature test structure.
+
+#+begin_src bash
+spec/
+    features/
+        hosts/
+            polls_spec.rb
+        audience/
+            voting_spec.rb
+#+end_src
+Let's worry about the audience later. It helps to differentiate between the roles of our imagined audience.
+
+With this, let's make our first feature! We're aiming to create a CRUD interface for the Poll model.
+
+- Poll ::
+  - data :: =title:text=, =date:datetime=,
+  - associations :: =has_many :options=
+***** spec: feature test for creating poll :passing:
+This one will be interesting as it won't be complete until we code down the tree.
+
+****** Arrange
+- indicate the page we are visiting for poll creation
+  Usually with
+  #+begin_src ruby
+before do
+  visit root
+end
+  #+end_src
+****** Act
+- attempt to create a poll
+- Fill in title
+- Submit
+
+****** Assert
+- poll is successfully created with the right title and today's date
+***** spec: update poll
+***** spec: destroy poll
+***** spec: show poll (visualization route?)
