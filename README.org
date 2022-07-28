@@ -4,7 +4,10 @@ I decided to make this test application to showcase my work-flow and -style. I h
 * How I made this
 First, I'll start initialize the project with my Reasonable Defaults template, which will install of all my normal tools.
 
- =rails new poll-anywhere-redux -m "https://railsbytes.com/script/zOvs6r"=
+#+begin_src bash
+rails new poll-anywhere-redux -m "https://railsbytes.com/script/zOvs6r"
+#+end_src
+
 ** Explanation for Reasonable Defaults
 The *Reasonable Defaults* template setups up the following:
 - RSpec Workflow
@@ -58,10 +61,9 @@ before do
   visit root
 end
   #+end_src
-****** Act
-- attempt to create a poll
-- Fill in title
-- Submit
+****** Act :: attempt to create a poll
+- =fill_in=
+- =submit=
 
 ****** Assert
 - poll is successfully created with the right title and today's date
