@@ -1,2 +1,4 @@
 %h1 Polls#new
-%p Find me in app/views/polls/new.html.haml
+= simple_form_for @poll do |f|
+    = f.input :title
+    = f.button :submit
