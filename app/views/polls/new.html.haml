@@ -1,4 +1,4 @@
 %h1 Polls#new
 = simple_form_for @poll do |f|
-    = f.input :title
-    = f.button :submit
+    = f.input :title, label: "Poll Title"
+    = f.button :submit, "Submit"
