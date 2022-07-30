@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Poll Interface', type: :feature do
   before do
+    # NOTE: Update ARRANGE for index.all
     visit root_path
   end
   feature 'Poll Creation' do
