@@ -6,6 +6,7 @@ RSpec.feature 'Poll Interface', type: :feature do
   before do
     # NOTE: Update ARRANGE for index.all
     visit root_path
+    click_link('New Poll')
   end
   feature 'Poll Creation' do
     scenario 'Host creates a new poll' do
