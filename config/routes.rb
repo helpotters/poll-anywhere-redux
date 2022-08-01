@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :polls
-  root 'polls#new'
-  # NOTE: Role selection
+  resources :welcome, only: %i[index]
+
+  root 'welcome#index'
 end
