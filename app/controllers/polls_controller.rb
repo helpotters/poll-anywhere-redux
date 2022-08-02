@@ -17,6 +17,8 @@ class PollsController < ApplicationController
     end
   end
 
+  def show; end
+
   private
 
   def poll_params

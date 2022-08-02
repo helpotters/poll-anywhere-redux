@@ -7,5 +7,6 @@
           = link_to "New Poll", new_poll_path
       .column
         .hero-body
-        %button.button
-          -# = link_to "New Poll", new_poll_path
+          = simple_form_for :poll, url: :search do |f|
+            = f.input :id, label: "Join by ID"
+            = f.submit "Join"
