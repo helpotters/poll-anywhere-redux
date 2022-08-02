@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.feature 'Poll Interface', type: :feature do
   before do
-    # NOTE: Update ARRANGE for index.all
     visit root_path
-    click_link('New Poll')
   end
-  feature 'Poll Creation' do
+  feature 'Polls' do
     scenario 'Host creates a new poll' do
+      click_link('New Poll')
       title = Faker::Cosmere.spren
       fill_in('Poll Title', with: title) # Stormlight reference is essential
       click_button('Submit')
@@ -17,4 +16,13 @@ RSpec.feature 'Poll Interface', type: :feature do
       expect(page).to have_content(title)
     end
   end
+  xfeature 'Options' do
+    # NOTE: Options after responses?
+    xscenario 'Adding Options'
+    xscenario 'Editing Options'
+    xscenario 'Removing Options'
+  end
+  xfeature 'Edit'
+  xfeature 'Delete'
+  xfeature 'Visualization'
 end
