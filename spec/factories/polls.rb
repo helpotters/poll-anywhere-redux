@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :poll do
-    title { Faker::String.random }
+    title { Faker::Cosmere.spren }
   end
 end
