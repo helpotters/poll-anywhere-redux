@@ -16,8 +16,8 @@
             %p.text-lg Type the shared ID here and join the live poll!
             .form-control
               = simple_form_for :poll, url: :search do |f|
-                %label.label ID
-                = f.input_field :id, class: "input input-bordered w-full max-w-xs", placeholder: "#23411"
+                %label.label Join by ID
+                = f.input_field :id, class: "input input-bordered w-full max-w-xs", placeholder: "Paste your ID here"
                 = f.submit "Join", class: "btn"
       .container
         .card.min-h-full.text-center.lg:text-left

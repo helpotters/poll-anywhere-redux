@@ -16,9 +16,17 @@ RSpec.feature 'Poll Interface', type: :feature do
       expect(page).to have_content(title)
     end
   end
-  xfeature 'Options' do
-    # NOTE: Options after responses?
-    xscenario 'Adding Options'
+  feature 'Options' do
+    let(:poll) { create(:poll) }
+    before do
+      visit root_path
+      fill_in('Paste your ID here', with: poll.id)
+      click_button('Join')
+    end
+    scenario 'Adding Options' do
+      click_button('Add Option')
+      fill_in('Type answer here', with: Faker::Cosmere.spren)
+    end
     xscenario 'Editing Options'
     xscenario 'Removing Options'
   end
