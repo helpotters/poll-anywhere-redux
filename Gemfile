@@ -98,3 +98,5 @@ end
 gem 'erb2haml', '~> 0.1.5', group: :development
 
 gem 'rubocop', '~> 1.32'
+
+gem "simple_form-tailwind", "~> 0.1.1"
