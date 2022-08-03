@@ -1,12 +1,28 @@
-.dark-wrapper
-  %section.hero.is-fullheight
-    .columns
-      .column
-        .hero-body
-        %button.button
-          = link_to "New Poll", new_poll_path
-      .column
-        .hero-body
-          = simple_form_for :poll, url: :search do |f|
-            = f.input :id, label: "Join by ID"
-            = f.submit "Join"
+%section.px-4.py-24.mx-auto.max-w-7xl.hero.min-h-screen
+  .w-full.mx-auto.text-left.md:text-center{:class => "md:w-11/12 xl:w-9/12"}
+    %h1.mb-6.text-4xl.font-extrabold.leading-none.tracking-normal.text-base-900.md:text-6xl.md:tracking-tight
+      Share your
+      %span.block.w-full.text-transparent.bg-clip-text.bg-gradient-to-r.from-green-400.to-purple-500.lg:inline thoughts and opinons
+    %p.px-0.mb-6.text-lg.md:text-xl.lg:px-24
+      Multiple Choice Questions Running on Full Stack Technology from the 22nd Century.
+    .mb-4.space-x-0.md:space-x-2.md:mb-8
+    .grid.grid-cols-2.py-6.shadow-2xl
+      .container
+        .card.min-h-full.text-center.lg:text-left.min-w-full
+          .card-body
+            %h1.text-2xl.font-bold
+              For
+              %span.block.w-full.text-transparent.bg-clip-text.bg-gradient-to-r.from-green-400.to-purple-500.inline Audience Members
+            %p.text-lg Type the shared ID here and join the live poll!
+            .form-control
+              = simple_form_for :poll, url: :search do |f|
+                %label.label ID
+                = f.input_field :id, class: "input input-bordered w-full max-w-xs", placeholder: "#23411"
+                = f.submit "Join", class: "btn"
+      .container
+        .card.min-h-full.text-center.lg:text-left
+          .card-body
+            %h1.text-2xl.font-bold For Hosts
+            %p.py-6.text-lg Make a Kahoot for you and your friends!
+            %button.btn
+              = link_to "New Poll", new_poll_path
