@@ -12,9 +12,9 @@
   %body.min-h-screen
     .navbar.bg-base-100
       .navbar-start
-        %a.btn.btn-ghost
+        %a.btn.btn-ghost{:href => "/"}
           = image_tag "icon", class: "img", class: "mr-3 h-14 sm:h-9"
       .navbar-center.text-center
-        %a.btn.btn-ghost.normal-case.text-xl Poll Anywhere Redux
+        %a.btn.btn-ghost.normal-case.text-xl{:href => "/"} Poll Anywhere Redux
       .navbar-end
     = yield
