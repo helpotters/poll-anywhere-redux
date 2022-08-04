@@ -1,4 +1,4 @@
 class Option < ApplicationRecord
-  belongs_to :poll, dependent: :destroy
-  validates :title, presence: true
+  belongs_to :poll
+  validates :title, presence: true, uniqueness: true
 end
