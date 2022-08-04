@@ -14,13 +14,13 @@
               = f.hidden_field :id, value: @poll.id
               %label.label Poll Title
               .text-center.lg:text-left
-                = f.input_field :title, placeholder: "Poll Title", class: "text-2xl base-200 bg-base-100"
+                = f.input_field :title, placeholder: "Poll Title", class: "text-2xl base-200 bg-base-100 hover:bg-base-200"
               -# = render partial: 'polls/options', collection: @poll.options, as: :option
               .grid.grid-rows-1.py-2
                 %p Options
                 = f.simple_fields_for :options do |option_form|
                   .input-group.py-2.shadow-md
-                    = option_form.input_field :title, placeholder: "Type new option", class: "input input-bordered w-full"
+                    = option_form.input_field :title, placeholder: "Type new option", class: "input input-bordered w-full hover:input-primary"
                     = option_form.hidden_field :poll_id, value: @poll.id
-                    = option_form.check_box :_destroy, class: "checkbox checkbox-primary btn"
-              = f.button :submit, "Submit"
+                    = option_form.check_box :_destroy, class: "checkbox checkbox-primary btn btn-warning bg-base-200"
+              = f.button :submit, "Submit", class: "btn bg-base-200"
