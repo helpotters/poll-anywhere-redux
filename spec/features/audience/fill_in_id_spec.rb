@@ -15,6 +15,7 @@ RSpec.feature 'Audience', type: :feature do
       click_button('Join')
       expect(page).to have_content(poll.title)
       expect(page).to have_content(name)
+      expect(poll.voters).to eq(1)
     end
     xscenario 'Join Expired Poll'
   end
