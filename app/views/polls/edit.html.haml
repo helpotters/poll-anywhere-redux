@@ -1,2 +1,11 @@
 = @poll.title
-= render "form", poll: @poll
+= @poll.options.count
+= simple_form_for @poll do |f|
+    = f.hidden_field :id, value: @poll.id
+    = f.input :title, label: "Poll Title"
+    -# = render partial: 'polls/options', collection: @poll.options, as: :option
+    = f.simple_fields_for :options do |option_form|
+        = option_form.input :title, placeholder: "Type new option"
+        = option_form.hidden_field :poll_id, value: @poll.id
+        = option_form.check_box :_destroy
+    = f.button :submit, "Submit"

@@ -1,5 +1,7 @@
 = simple_form_for :poll do |f|
     = f.input :title, label: "Poll Title"
-    = simple_fields_for :options do |opt|
-        = opt.input :title, placeholder: "Type new option"
+    = render partial: 'polls/options', collection: poll.options, as: :option
+    = f.simple_fields_for :options do |option_form|
+        = option_form.input :title, placeholder: "Type new option"
+        = option_form.hidden_field :id, value: poll.id
     = f.button :submit, "Submit"

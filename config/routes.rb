@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :polls do
-    resources :options, only: %i[create]
+    resources :options
   end
   post 'search' => 'visualization#show'
 
