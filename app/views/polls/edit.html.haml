@@ -1,10 +1,26 @@
-= @poll.title
-= simple_form_for @poll do |f|
-    = f.hidden_field :id, value: @poll.id
-    = f.input :title, label: "Poll Title"
-    -# = render partial: 'polls/options', collection: @poll.options, as: :option
-    = f.simple_fields_for :options do |option_form|
-        = option_form.input :title, placeholder: "Type new option"
-        = option_form.hidden_field :poll_id, value: @poll.id
-        = option_form.check_box :_destroy
-    = f.button :submit, "Submit"
+%section.max-h-screen
+  .hero.bg-base-200.pb-40
+    .hero-content.flex-col
+      %ul.steps.steps.vertical.py-4
+        %li.step.step-primary Create Poll
+        %li.step.step-primary Add Answers
+        %li.step Send it out
+      .text-center.lg:text-left
+        %p.text-lg Fine-tune Your Poll
+      .card.min-w-screen.shadow-2xl.bg-base-100
+        .card-body
+          .form-control.grid.grid-rows-1
+            = simple_form_for @poll do |f|
+              = f.hidden_field :id, value: @poll.id
+              %label.label Poll Title
+              .text-center.lg:text-left
+                = f.input_field :title, placeholder: "Poll Title", class: "text-2xl base-200 bg-base-100"
+              -# = render partial: 'polls/options', collection: @poll.options, as: :option
+              .grid.grid-rows-1.py-2
+                %p Options
+                = f.simple_fields_for :options do |option_form|
+                  .input-group.py-2.shadow-md
+                    = option_form.input_field :title, placeholder: "Type new option", class: "input input-bordered w-full"
+                    = option_form.hidden_field :poll_id, value: @poll.id
+                    = option_form.check_box :_destroy, class: "checkbox checkbox-primary btn"
+              = f.button :submit, "Submit"
