@@ -17,7 +17,9 @@
             .form-control
               = simple_form_for :poll, url: :search do |f|
                 %label.label Join by ID
-                = f.input_field :id, class: "input input-bordered w-full max-w-xs", placeholder: "Paste your ID here"
+                = f.input_field :id, class: "input input-bordered w-full max-w-xs", placeholder: "Join by ID"
+                %label.label Add your name
+                = f.input_field :name, class: "input input-bordered w-full max-w-xs", placeholder: "Name"
                 = f.submit "Join", class: "btn"
       .container
         .card.min-h-full.text-center.lg:text-left
