@@ -1,4 +1,5 @@
-= simple_form_for @poll do |f|
+= simple_form_for :poll do |f|
     = f.input :title, label: "Poll Title"
+    = simple_fields_for :options do |opt|
+        = opt.input :title, placeholder: "Type new option"
     = f.button :submit, "Submit"
-= render "options/new", poll: poll
