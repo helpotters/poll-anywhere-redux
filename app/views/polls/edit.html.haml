@@ -19,8 +19,19 @@
               .grid.grid-rows-1.py-2
                 %p Options
                 = f.simple_fields_for :options do |option_form|
-                  .input-group.py-2.shadow-md
-                    = option_form.input_field :title, placeholder: "Type new option", class: "input input-bordered w-full hover:input-primary"
-                    = option_form.hidden_field :poll_id, value: @poll.id
-                    = option_form.check_box :_destroy, class: "checkbox checkbox-primary btn btn-warning bg-base-200"
+                  = option_form.hidden_field :poll_id, value: @poll.id
+                  .py-2.shadow-md
+                    %label.input-group
+                      = option_form.input_field :title, placeholder: "Type new option", class: "input input-bordered w-full hover:input-primary"
+                      %label.swap
+                        = option_form.check_box :_destroy, class: "bg-base-200"
+                        %span.swap-off.label-text.py-3.bg-primary.rounded-md
+                          %svg{:fill => "none", :height => "24", :stroke => "#000000", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}>
+                            %polyline{:points => "20 6 9 17 4 12"}
+                        %span.swap-on.label-text.bg-secondary
+                          %svg{:fill => "none", :height => "24", :stroke => "#000000", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                            %polyline{:points => "3 6 5 6 21 6"}
+                            %path{:d => "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"}
+                            %line{:x1 => "10", :x2 => "10", :y1 => "11", :y2 => "17"}
+                            %line{:x1 => "14", :x2 => "14", :y1 => "11", :y2 => "17"}                        %span.swap-off.label-text
               = f.button :submit, "Submit", class: "btn bg-base-200"
