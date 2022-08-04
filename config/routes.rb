@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :polls
+  resources :polls do
+    resources :options, only: %i[create]
+  end
   post 'search' => 'visualization#show'
 
   resources :welcome, only: %i[index]

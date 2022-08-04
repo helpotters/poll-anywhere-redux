@@ -17,11 +17,19 @@ class PollsController < ApplicationController
     end
   end
 
+  def update
+    if @poll.update(poll_params)
+      redirect_to edit_poll_path(@poll), notice: 'Poll was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def show; end
 
   private
 
   def poll_params
-    params.require(:poll).permit(:title)
+    params.require(:poll).permit(:title, options_attributes: [:title])
   end
 end
