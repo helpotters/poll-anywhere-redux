@@ -12,8 +12,4 @@ class VisualizationController < ApplicationController
       end
     end
   end
-
-  def visualization_params
-    permit(:poll)
-  end
 end

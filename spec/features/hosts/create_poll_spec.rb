@@ -19,13 +19,17 @@ RSpec.feature 'Poll Interface', type: :feature do
   feature 'Options' do
     let(:poll) { create(:poll) }
     before do
-      visit root_path
-      fill_in('Paste your ID here', with: poll.id)
-      click_button('Join')
+      click_link('New Poll')
+      title = Faker::Cosmere.spren
+      fill_in('Poll Title', with: title) # Stormlight reference is essential
+      click_button('Submit')
     end
     scenario 'Adding Options' do
-      click_button('Add Option')
-      fill_in('Type answer here', with: Faker::Cosmere.spren)
+      answer = Faker::Cosmere.spren
+      fill_in('Type new option', with: answer)
+      click_button('Submit')
+
+      expect(page).to have_content(answer)
     end
     xscenario 'Editing Options'
     xscenario 'Removing Options'
