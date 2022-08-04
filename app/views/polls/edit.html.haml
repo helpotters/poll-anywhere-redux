@@ -1,5 +1,4 @@
 = @poll.title
-= @poll.options.count
 = simple_form_for @poll do |f|
     = f.hidden_field :id, value: @poll.id
     = f.input :title, label: "Poll Title"
