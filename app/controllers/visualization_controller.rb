@@ -20,5 +20,6 @@ class VisualizationController < ApplicationController
 
   def add_user
     session[:name] = params[:poll][:name] if session[:name].nil?
+    set_user(session[:name])
   end
 end

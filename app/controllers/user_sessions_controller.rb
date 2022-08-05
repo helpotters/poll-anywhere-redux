@@ -8,6 +8,7 @@ class UserSessionsController < ApplicationController
     else
       name = params[:session][:name]
       create_user name
+      set_user
     end
   end
 

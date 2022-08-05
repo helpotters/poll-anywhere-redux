@@ -1,6 +1,9 @@
 module UserSessionsHelper
-  def  set_user
-    session[:user_id] = user.id
+  def set_user(name)
+    if session[:user_id].nil?
+      user = create_user(name)
+      session[:user_id] = user.id
+    end
   end
 
   def current_user
@@ -11,8 +14,8 @@ module UserSessionsHelper
     !current_user.nil?
   end
 
-  def create_user
-    User.build(name)
+  def create_user(name)
+    User.create(name: name)
   end
 
   def store_location
