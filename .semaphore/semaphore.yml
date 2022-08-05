@@ -1,16 +1,61 @@
 version: v1.0
-name: Ruby
+name: Demo Rails 5 app
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu2004
+    os_image: ubuntu1804
 blocks:
-  - name: bundle exec rspec
+  - name: Setup
     task:
       jobs:
-        - name: bundle install
+        - name: bundle
           commands:
             - checkout
+            - cache restore
+            - sem-version ruby 2.6.0
+            - bundle install --deployment -j 4 --path vendor/bundle
+            - cache store
+  - name: Code scanning
+    task:
+      jobs:
+        - name: check style + security
+          commands:
+            - checkout
+            - cache restore
             - sem-version ruby 2.6.0
             - bundle install --deployment --path vendor/bundle
-            - bundle exec rspec
+            - bundle exec rubocop
+            - bundle exec brakeman
+  - name: Unit tests
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+          - sem-service start postgres
+          - sem-version ruby 2.6.0
+          - bundle install --deployment --path vendor/bundle
+          - 'bundle exec rake db:setup'
+      jobs:
+        - name: RSpec - model tests
+          commands:
+            - bundle exec rspec spec/models
+          parallelism: 2
+  - name: Integration tests
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+          - sem-service start postgres
+          - sem-version ruby 2.6.0
+          - bundle install --deployment --path vendor/bundle
+          - 'bundle exec rake db:setup'
+      jobs:
+        - name: RSpec - feature specs
+          commands:
+            - bundle exec rspec spec/features
+          parallelism: 2
+promotions:
+  - name: Promotion 1
+    pipeline_file: pipeline_2.yml
