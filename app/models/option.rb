@@ -1,4 +1,5 @@
 class Option < ApplicationRecord
   belongs_to :poll
-  validates :title, presence: true, uniqueness: true
+  # TODO: Add Uniqueness validation scope to parent Poll
+  validates :title, presence: true
 end
