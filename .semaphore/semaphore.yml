@@ -41,14 +41,6 @@ blocks:
           value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
         - name: RAILS_ENV
           value: test
-      prologue:
-        commands:
-          - checkout
-          - cache restore
-          - sem-service start postgres
-          - sem-version ruby 2.6.0
-          - bundle install --deployment --path vendor/bundle
-          - 'bundle exec rake db:setup'
       jobs:
         - name: RSpec - Test Job
           commands:
