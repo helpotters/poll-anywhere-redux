@@ -26,16 +26,18 @@ RSpec.feature 'Audience', type: :feature do
       expect(page.current_path).to eq(root_path)
     end
   end
-  xfeature 'Answering Poll' do
+  feature 'Answering Poll' do
     scenario 'Audience Member Submits Valid Vote' do
       name = Faker::Cosmere.herald
-      join_poll(poll, name)
-      option = poll.options.first.title.to_s
-      click_button(option)
+      join_poll(poll.friendly_id, name)
+      option = poll.options.first
+      within ''
+      page.find(:css, "#checkbox-#{option.id}").click
+      page.find(:css, "#user-#{option.id}", visible: false).set 'Tree'
       click_button('Submit')
-      # find first option.click
-      # submit
-      # expect that option to have one vote in visualization view
+
+      show_page = page.find(:css, "#option-#{option.id}")
+      expect(show_page).to have_content('1')
     end
   end
 end

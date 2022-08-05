@@ -9,7 +9,7 @@
           .grid.grid-cols-2.gap-6
             - @poll.options.each do |option|
               %label.input-group.rounded-md
-                .stats.swap
+                .stats.swap{id: "option-#{option.id}"}
                   - title = option.title
                   .swap-off.label-text.py-3.bg-base-100.w-60
                     .stat
