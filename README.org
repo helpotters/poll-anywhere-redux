@@ -1,4 +1,8 @@
+:PROPERTIES:
+:ID:       facab3f0-c0a3-4dbd-b906-71b6fcd80477
+:END:
 #+title: Readme
+[[!Elmo][elmo.png]]
 * Why?
 I decided to make this test application to showcase my work-flow and -style. I had admittedly had difficulties with the technical exercise under the 1hr constraint. However, I wanted to show what I'm normally like under most circumstances, and my thought process throughout a project.
 
@@ -29,7 +33,10 @@ The *Reasonable Defaults* template setups up the following:
   - CSS Bundling :: Quickly install a common framework without hassle
 - Immediately get started with development
   - okay, it actually needs a couple of file edits, but I'm working on that.
-*  Testing
+*  Testing :ATTACH:
+:PROPERTIES:
+:ID:       08633045-86c3-4b03-93be-cdf51f345a73
+:END:
 #+begin_src
 Audience
   Joining
@@ -67,6 +74,7 @@ User
 
 Here are the specs that I wrote for this project. It's primarily comprised of feature specs and units specs, reflecting the top-down approach I normally take.
 
-There are some drawbacks, as I was missing coverage for handling nested attributes (or other methods). While the code functions, a lack of propering testing introduces inflexibility with future refactoring.
+There are some drawbacks, as I was missing coverage for handling nested
+attributes (or other methods). While the code functions, a lack of propering testing introduces inflexibility with future refactoring.
 * Points of Difficulty
 Following nested attributes with nested resources was a bit tough, but I simply need to get improve my tdd-ing approach with form handling behind the scenes. Normally, I don't worry about implementation, however, I see the benefit of including it for these kinds of situations.
