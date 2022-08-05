@@ -24,7 +24,7 @@ class PollsController < ApplicationController
 
   def update
     if @poll.update(poll_params)
-      redirect_to edit_poll_path(@poll), notice: 'Poll was successfully updated.'
+      render 'visualization/show', notice: 'Poll was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end

@@ -9,7 +9,7 @@ class VisualizationController < ApplicationController
 
     respond_to do |format|
       if @poll
-        format.html { render 'show' }
+        format.html { render 'respond' }
       else
         format.html { redirect_to :root, status: 404 }
       end
