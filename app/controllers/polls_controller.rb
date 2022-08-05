@@ -1,6 +1,5 @@
 class PollsController < ApplicationController
   before_action :set_poll, except: %i[new index create]
-  before_action :add_answers, only: %i[update]
 
   def new
     @poll = Poll.new
@@ -24,7 +23,11 @@ class PollsController < ApplicationController
 
   def update
     if @poll.update(poll_params)
-      render 'visualization/show', notice: 'Poll was successfully updated.'
+      if poll_params.has_key?(:answers_attributes)
+        render 'visualization/show', notice: 'Poll was successfully updated.'
+      else
+        redirect_to edit_poll_path(@poll), notice: 'Poll was successfully updated.'
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,14 +39,6 @@ class PollsController < ApplicationController
 
   def set_poll
     @poll = Poll.find(params[:id])
-  end
-
-  def add_answers
-    @poll.update(poll_params)
-    p test = @poll.answers
-    p test.each do |answer|
-      p answer
-    end
   end
 
   def poll_params
