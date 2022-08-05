@@ -31,8 +31,19 @@ RSpec.feature 'Poll Interface', type: :feature do
 
       expect(page).to have_content(answer)
     end
-    xscenario 'Editing Options'
-    xscenario 'Removing Options'
+    scenario 'Editing Options' do
+      answer = Faker::Cosmere.spren
+      fill_in('Type new option', with: answer)
+      click_button('Submit')
+
+      new_answer = Faker::Cosmere.spren
+      find('.input', text: answer).fill_in(with: new_answer)
+      click_button('Submit')
+
+      expect(page).to have_content(new_answer)
+      expect(page).to have_no_content(answer)
+    end
+    scenario 'Removing Options'
   end
   xfeature 'Edit'
   xfeature 'Delete'
