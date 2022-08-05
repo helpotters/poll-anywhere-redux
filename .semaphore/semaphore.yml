@@ -66,9 +66,8 @@ blocks:
         - name: RAILS_ENV
           value: test
       jobs:
-        - name: 'Job #1'
+        - name: Tailwind is not being poggers
           commands:
-            - 'yarn build:css'
             - 'rails assests:precompile'
 promotions:
   - name: Deploy to Heroku
