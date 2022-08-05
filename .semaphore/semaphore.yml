@@ -68,7 +68,7 @@ blocks:
       jobs:
         - name: Tailwind is not being poggers
           commands:
-            - 'rails assests:precompile'
+            - 'bundle exec rake assests:precompile'
 promotions:
   - name: Deploy to Heroku
     pipeline_file: pipeline_2.yml
