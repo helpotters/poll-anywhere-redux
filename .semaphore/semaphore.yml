@@ -44,25 +44,14 @@ blocks:
       jobs:
         - name: RSpec - model tests
           commands:
-            - bundle exec rspec spec/models
+            - rspec_booster --job $SEMAPHORE_JOB_INDEX/$SEMAPHORE_JOB_COUNT
           parallelism: 2
-  - name: Integration tests
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore
-          - sem-service start postgres
-          - sem-version ruby 2.6.0
-          - bundle install --deployment --path vendor/bundle
-          - 'bundle exec rake db:setup'
-      jobs:
-        - name: RSpec - feature specs
+      epilogue:
+        on_pass:
           commands:
-            - bundle exec rspec spec/features
-          parallelism: 2
+            - echo "Testing complete"
 promotions:
   - name: Deploy to Heroku
     pipeline_file: pipeline_2.yml
     auto_promote:
-      when: branch = 'main' AND result = 'passed'
+      when: branch = 'setup-semaphore' AND result = 'passed'
