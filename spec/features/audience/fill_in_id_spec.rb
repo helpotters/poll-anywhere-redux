@@ -7,21 +7,26 @@ RSpec.feature 'Audience', type: :feature do
   before do
     visit root_path
   end
-  def join_poll(poll, name)
-    fill_in('Join by ID', with: poll.id)
+  def join_poll(poll_id, name)
+    fill_in('Join by ID', with: poll_id)
     fill_in('Name', with: name)
     click_button('Join')
   end
   feature 'Joining' do
     scenario 'Join Poll as Audience Member' do
       name = Faker::Cosmere.herald
-      join_poll(poll, name)
+      join_poll(poll.id, name)
       expect(page).to have_content(poll.title)
       expect(page).to have_content(name)
     end
-    xscenario 'Join Expired Poll'
+    scenario 'Fill with invalid id' do
+      name = Faker::Cosmere.herald
+      join_poll(123, name)
+
+      expect(page).should eq(root_path)
+    end
   end
-  feature 'Answering Poll' do
+  xfeature 'Answering Poll' do
     scenario 'Audience Member Submits Valid Vote' do
       name = Faker::Cosmere.herald
       join_poll(poll, name)
