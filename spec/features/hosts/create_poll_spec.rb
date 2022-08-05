@@ -43,7 +43,6 @@ RSpec.feature 'Poll Interface', type: :feature do
       expect(page).to have_content(new_answer)
       expect(page).to have_no_content(answer)
     end
-    scenario 'Removing Options'
   end
   xfeature 'Edit'
   xfeature 'Delete'

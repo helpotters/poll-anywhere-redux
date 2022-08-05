@@ -23,7 +23,7 @@ RSpec.feature 'Audience', type: :feature do
       name = Faker::Cosmere.herald
       join_poll(123, name)
 
-      expect(page).should eq(root_path)
+      expect(page.current_path).to eq(root_path)
     end
   end
   xfeature 'Answering Poll' do
