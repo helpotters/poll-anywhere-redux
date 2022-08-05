@@ -21,7 +21,7 @@ RSpec.feature 'Audience', type: :feature do
     end
     xscenario 'Join Expired Poll'
   end
-  feature 'Responding' do
+  feature 'Answering Poll' do
     scenario 'Audience Member Submits Valid Vote' do
       name = Faker::Cosmere.herald
       join_poll(poll, name)
