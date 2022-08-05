@@ -25,7 +25,9 @@ RSpec.feature 'Audience', type: :feature do
     scenario 'Audience Member Submits Valid Vote' do
       name = Faker::Cosmere.herald
       join_poll(poll, name)
-      click_button('Vote')
+      option = poll.options.first.title.to_s
+      click_button(option)
+      click_button('Submit')
       # find first option.click
       # submit
       # expect that option to have one vote in visualization view

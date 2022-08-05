@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'answers/show'
+  get 'answers/create'
   resources :polls do
     resources :options
     resource :answer, only: %i[show create]

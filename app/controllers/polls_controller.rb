@@ -1,8 +1,9 @@
 class PollsController < ApplicationController
   before_action :set_poll, except: %i[new index create]
+  before_action :add_answers, only: %i[update]
+
   def new
     @poll = Poll.new
-    @poll.options.build
   end
 
   def edit
@@ -37,7 +38,17 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
   end
 
+  def add_answers
+    @poll.update(poll_params)
+    p test = @poll.answers
+    p test.each do |answer|
+      p answer
+    end
+  end
+
   def poll_params
-    params.require(:poll).permit(:id, :title, options_attributes: %i[id poll_id title _destroy])
+    params.require(:poll).permit(:id, :title,
+                                 options_attributes: %i[id poll_id title _destroy],
+                                 answers_attributes: %i[poll_id user_id option_id _destroy])
   end
 end

@@ -1,5 +1,16 @@
 %h1
   = @poll.title
+  = @poll.options.count
 %h2
   = session[:name]
-= button_to new_poll_answer_path "Vote"
+  = session[:user_id]
+= simple_form_for @poll do |f|
+  = f.simple_fields_for :options do |option|
+    = option.object.title
+    = option.object.answers.count
+    = f.simple_fields_for :answers, @poll.answers.build do |answer|
+      = answer.hidden_field :poll_id, value: @poll.id
+      = answer.hidden_field :option_id, value: option.object.id
+      = answer.hidden_field :user_id, value: session[:user_id]
+      = answer.check_box :_destroy, {}, '0', '1'
+  = f.button :submit, "Submit"

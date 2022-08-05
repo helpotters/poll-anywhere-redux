@@ -3,4 +3,5 @@ class Poll < ApplicationRecord
   has_many :answers
   validates :title, presence: true
   accepts_nested_attributes_for :options, allow_destroy: true, update_only: true
+  accepts_nested_attributes_for :answers, allow_destroy: true
 end

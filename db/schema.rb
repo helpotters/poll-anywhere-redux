@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_001004) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_05_035327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.integer "vote_count"
     t.bigint "poll_id", null: false
     t.bigint "option_id", null: false
     t.bigint "user_id", null: false
