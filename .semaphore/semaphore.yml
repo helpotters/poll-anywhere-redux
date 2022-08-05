@@ -25,7 +25,7 @@ blocks:
             - echo "Gems installed."
             - 'bundle exec rake db:setup'
             - echo "Completed database setup"
-            - 'bundle exec rake assests:precompile'
+            - 'bundle exec rake assets:precompile'
             - echo "Finished css precompile."
       epilogue:
         on_pass:
