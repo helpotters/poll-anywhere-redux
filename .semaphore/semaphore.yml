@@ -7,8 +7,13 @@ agent:
 blocks:
   - name: Setup
     task:
+      env_vars:
+        - name: DATABASE_URL
+          value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
+        - name: RAILS_ENV
+          value: test
       jobs:
-        - name: bundle
+        - name: Checkout and Start
           commands:
             - checkout
             - sem-service start postgres 11
@@ -20,6 +25,12 @@ blocks:
             - echo "Gems installed."
             - 'bundle exec rake db:setup'
             - echo "Completed database setup"
+      epilogue:
+        on_pass:
+          commands:
+            - echo "Setup complete."
+      secrets:
+        - name: heroku-http
   - name: Unit tests
     task:
       prologue:
