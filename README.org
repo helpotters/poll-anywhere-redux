@@ -3,6 +3,15 @@
 :END:
 #+title: Readme
 [[!Elmo][elmo.png]]
+* Usage
+Run the following command to installed required gems:
+#+begin_src bash
+bundle install
+#+end_src
+Run the server:
+#+begin_src bash
+bin/dev
+#+end_src
 * Why?
 I decided to make this test application to showcase my work-flow and -style. I had admittedly had difficulties with the technical exercise under the 1hr constraint. However, I wanted to show what I'm normally like under most circumstances, and my thought process throughout a project.
 
