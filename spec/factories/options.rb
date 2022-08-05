@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :option do
-    title { "MyText" }
+    title { Faker::Cosmere.spren }
   end
 end
