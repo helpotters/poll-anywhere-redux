@@ -1,5 +1,5 @@
 version: v1.0
-name: Demo Rails 5 app
+name: Initialize and RSpec Testing
 agent:
   machine:
     type: e1-standard-2
@@ -46,5 +46,7 @@ blocks:
             - bundle exec rspec spec/features
           parallelism: 2
 promotions:
-  - name: Promotion 1
+  - name: Deploy to Heroku
     pipeline_file: pipeline_2.yml
+    auto_promote:
+      when: branch = 'main' AND result = 'passed'
