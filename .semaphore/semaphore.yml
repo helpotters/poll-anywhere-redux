@@ -25,6 +25,8 @@ blocks:
             - echo "Gems installed."
             - 'bundle exec rake db:setup'
             - echo "Completed database setup"
+            - 'bundle exec rake assests:precompile'
+            - echo "Finished css precompile."
       epilogue:
         on_pass:
           commands:
@@ -57,18 +59,7 @@ blocks:
           commands:
             - echo "Testing complete"
     dependencies:
-      - CSS Setup
-  - name: CSS Setup
-    dependencies:
       - Setup
-    task:
-      env_vars:
-        - name: RAILS_ENV
-          value: test
-      jobs:
-        - name: Tailwind is not being poggers
-          commands:
-            - 'bundle exec rake assests:precompile'
 promotions:
   - name: Deploy to Heroku
     pipeline_file: pipeline_2.yml
