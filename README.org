@@ -2,8 +2,12 @@
 * Why?
 I decided to make this test application to showcase my work-flow and -style. I had admittedly had difficulties with the technical exercise under the 1hr constraint. However, I wanted to show what I'm normally like under most circumstances, and my thought process throughout a project.
 
+I spent a couple of days on/off recreating the original base, and then spent the past two days focusing on the responses.
+
+
+My intention was to complete this project, admittedly, at the sacrifice of test coverage. While my tests are currently 100% passing, I consider most of them to be a bit brittle and inflexible.
 * Creation
-First, I'll start initialize the project with my Reasonable Defaults template, which will install of all my normal tools.
+My Reasonable Defaults template contains all of my normal tools that I install on most projects.
 
 #+begin_src bash
 rails new poll-anywhere-redux --database=postgresql -m "https://railsbytes.com/script/zOvs6r"
@@ -24,38 +28,45 @@ The *Reasonable Defaults* template setups up the following:
     - Converts all templates to HAML if chosen
   - CSS Bundling :: Quickly install a common framework without hassle
 - Immediately get started with development
-* Top-down Feature Testing
-We're going to code this from the feature down to the unit.
+  - okay, it actually needs a couple of file edits, but I'm working on that.
+*  Testing
+#+begin_src
+Audience
+  Joining
+    Join Poll as Audience Member
+    Fill with invalid id
+  Answering Poll
+    Audience Member Submits Valid Vote
 
-First I'm actually going to open the yard docs server so I can browse the documentation of the gems without having to google it. =yard server -g=. I realized I forgot generators rspec-rails had available because I normally avoid scaffolding and the such.
-** First Feature :: Polls
-Let's define the requirements of the feature to know when we have our MVP.
-- MVP :: users can create polls with a clean ui
-Let's think a bit about our feature test structure.
+Poll Interface
+  Polls
+    Host creates a new poll
+  Options
+    Adding Options
+    Editing Options
 
-#+begin_src bash
-spec/
-    features/
-        hosts/
-            polls_spec.rb
-        audience/
-            voting_spec.rb
+Answer
+  is expected to belong to poll required: true
+  is expected to belong to option required: true
+  is expected to belong to user required: true
+
+Option
+  is expected to validate that :title cannot be empty/falsy
+  is expected to belong to poll required: true
+  is expected to have many answers
+
+Poll
+  is expected to validate that :title cannot be empty/falsy
+  is expected to have many options
+  is expected to have many answers
+
+User
+  is expected to validate that :name cannot be empty/falsy
+  is expected to have many answers
 #+end_src
-Let's worry about the audience later. It helps to differentiate between the roles of our imagined users.
 
-With this, let's make our first feature! We're aiming to create a CRUD interface for the Poll model.
-**** spec: scenario for creating poll :passing:
-This one will be interesting as it won't be complete until we code down the tree.
-***** Arrange
-- indicate the page we are visiting for poll creation
-  Usually with
-  #+begin_src ruby
-before do
-  visit root
-end
-  #+end_src
-***** Act :: attempt to create a poll
-- =fill_in=
-- =submit=
-***** Assert
-- poll is successfully created with the right title and today's date
+Here are the specs that I wrote for this project. It's primarily comprised of feature specs and units specs, reflecting the top-down approach I normally take.
+
+There are some drawbacks, as I was missing coverage for handling nested attributes (or other methods). While the code functions, a lack of propering testing introduces inflexibility with future refactoring.
+* Points of Difficulty
+Following nested attributes with nested resources was a bit tough, but I simply need to get improve my tdd-ing approach with form handling behind the scenes. Normally, I don't worry about implementation, however, I see the benefit of including it for these kinds of situations.
