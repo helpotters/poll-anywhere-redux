@@ -11,10 +11,10 @@ blocks:
         - name: heroku-http
       env_vars:
         - name: HEROKU_APP_NAME
-          value: ''
+          value: poll-everywhere-redux
       jobs:
         - name: Push code
           commands:
             - checkout --use-cache
-            - 'heroku git:remote -a poll-anywhere-redux'
+            - 'heroku git:remote -a $HEROKU_APP_NAME'
             - 'git push heroku -f $SEMAPHORE_GIT_BRANCH:main'
